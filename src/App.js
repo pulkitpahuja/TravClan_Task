@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { AuthContextProvider } from './store/auth-context'
+import { AuthContextProvider } from './store/UserDataContext'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomePage from './components/HomePage/HomePage'
-import BidPage from './components/'
+import BidPage from './components/BidPage/BidPage'
 
 export default function App() {
 
