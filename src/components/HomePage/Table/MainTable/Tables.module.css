@@ -1,0 +1,26 @@
+.img__container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.root{
+    width: 100%;
+}
+
+.Table{
+    min-width: 750px;
+}
+
+.text {
+  margin: 10px;
+}
+
+.tableCellContainer {
+  display: flex;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+.tableRow {
+  cursor: pointer;
+}
