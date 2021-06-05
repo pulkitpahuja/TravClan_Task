@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         flexGrow: 1,
     },
+    appbar:{
+        backgroundColor: '#181a26'
+    }
 }));
 
 export default function ButtonAppBar(props) {
@@ -23,7 +26,7 @@ export default function ButtonAppBar(props) {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static">
+            <AppBar position="static" className={classes.appbar} >
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
                         {props.title}

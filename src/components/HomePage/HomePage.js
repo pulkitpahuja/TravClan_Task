@@ -8,7 +8,7 @@ const HomePage = () => {
     const ctx = useContext(AuthContext)
     console.log(ctx)
     return (
-        <div>
+        <div style={{marginTop:'2.5rem'}}>
             <TopBar title="TravClan Task Assignment"/>
             <div className={classes.homepage__div}>
                 <Table />
