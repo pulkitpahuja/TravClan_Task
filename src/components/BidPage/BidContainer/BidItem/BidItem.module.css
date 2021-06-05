@@ -1,0 +1,54 @@
+.bid-item {
+  padding: 7px 10px;
+  width: 400px;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  box-shadow: 0 3px 4px 3px rgb(41, 35, 58);
+  border-radius: 20px;
+}
+
+.bid-item__description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #40005d;
+  border: 1px solid white;
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.bid-item h2 {
+  color: white;
+  font-size: 1rem;
+  margin: 0 1rem;
+}
+
+.bid-item__price {
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #40005d;
+  border: 1px solid white;
+  padding: 0.5rem;
+  margin-top: 3px;
+  border-radius: 12px;
+}
+
+@media (min-width: 750px) {
+  .bid-item {
+    width: auto;
+  }
+  .bid-item__description h2 {
+    font-size: 1.25rem;
+  }
+
+  .bid-item__price {
+    font-size: 1.25rem;
+    padding: 0.5rem 1.5rem;
+  }
+}

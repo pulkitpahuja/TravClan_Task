@@ -9,7 +9,7 @@ const HomePage = () => {
     console.log(ctx)
     return (
         <div style={{marginTop:'2.5rem'}}>
-            <TopBar title="TravClan Task Assignment"/>
+            <TopBar title="TravClan Task Assignment - Pulkit Pahuja"/>
             <div className={classes.homepage__div}>
                 <Table />
             </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './BidsRow.module.css'
-import BidItem from '../BidItem'
+import BidItem from '../BidItem/BidItem'
 
 const BidsRow = props => {
     return (

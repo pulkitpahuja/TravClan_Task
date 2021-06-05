@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from "react-router-dom";
 import TopBar from '../HomePage/TopBar'
-import BidContainer from './BidContainer/BidContainer'
+import BidContainer from './BidContainer/BidContainer/BidContainer'
 import classes from './BidPage.module.css'
 
 const BidPage = () => {
