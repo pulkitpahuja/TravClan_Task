@@ -1,0 +1,12 @@
+.bids-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.bids-list__fallback {
+  color: white;
+  text-align: center;
+}

@@ -1,0 +1,49 @@
+.bid-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  margin:2rem 10rem 2rem 10rem;
+  background-color: #f8e9e9;
+}
+
+.bid-item__description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #40005d;
+  border: 1px solid white;
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+
+.bid-item h2 {
+  color: white;
+  font-size: 1rem;
+  margin: 0 1rem;
+}
+
+.bid-item__price {
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #40005d;
+  border: 1px solid white;
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+
+@media (min-width: 580px) {
+
+  .bid-item__description h2 {
+    font-size: 1.25rem;
+  }
+
+  .bid-item__price {
+    font-size: 1.25rem;
+    padding: 0.5rem 1.5rem;
+  }
+}

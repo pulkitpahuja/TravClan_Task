@@ -9,7 +9,7 @@ const HomePage = () => {
     console.log(ctx)
     return (
         <div>
-            <TopBar />
+            <TopBar title="TravClan Task Assignment"/>
             <div className={classes.homepage__div}>
                 <Tables />
             </div>

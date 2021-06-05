@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar(props) {
     const classes = useStyles();
 
     return (
@@ -26,7 +26,7 @@ export default function ButtonAppBar() {
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                        TravClan Task Assignment
+                        {props.title}
                     </Typography>
                 </Toolbar>
             </AppBar>

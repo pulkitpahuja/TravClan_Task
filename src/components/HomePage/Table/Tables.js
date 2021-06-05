@@ -17,6 +17,7 @@ import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import Switch from '@material-ui/core/Switch';
+import Avatar from '@material-ui/core/Avatar';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 function descendingComparator(a, b, orderBy) {
@@ -129,12 +130,14 @@ const useStyles = makeStyles((theme) => ({
     cursor: 'pointer',
     textDecoration: 'none'
   },
-  tableCellImage: {
-    width: '50px',
-    height: '50px',
-    borderRadius: '50%'
+  tableCellContainer: {
+    display:'flex',
+    justifyContent:'flex-start',
+    textAlign:'center'
+  },
+  text:{
+    margin: '10px'
   }
-
 }));
 
 const EnhancedTable = () => {
@@ -147,7 +150,7 @@ const EnhancedTable = () => {
   const [rowsChecked, setRowsChecked] = useState([])
   let history = useHistory();
 
-  const createData = (data) => {
+  const rows = ctx.userData.map((data) => {
     const bids = data.bids.map(e => e.amount);
     let max = bids.length === 0 ? '-' : Math.max(...bids)
     let min = bids.length === 0 ? '-' : Math.min(...bids)
@@ -163,8 +166,7 @@ const EnhancedTable = () => {
       bid: rowsChecked.length !== 0 ? (rowsChecked[index].max ? max : min) : max,
       email: data.email
     };
-  }
-  const rows = ctx.userData.map((e) => createData(e));
+  });
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -221,15 +223,14 @@ const EnhancedTable = () => {
                       className={classes.tableRow}
                       key={row.id}
                       hover
-                      component='a'
                       role="checkbox"
                       onClick={(event) => handleClick(event, row.id)}
                       tabIndex={-1}
                     >
                       <TableCell id={labelId} scope="row" padding="default">
-                        <div>
-                          <img className={classes.tableCellImage} src={row.imageURL} alt='avatar' />
-                          {row.name}
+                        <div className={classes.tableCellContainer}>
+                          <Avatar src={row.imageURL} alt='avatar' />
+                          <p className={classes.text}>{row.name}</p>
                         </div>
                       </TableCell>
                       <TableCell>{row.email}</TableCell>
