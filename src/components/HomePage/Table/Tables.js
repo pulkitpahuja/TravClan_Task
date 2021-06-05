@@ -57,6 +57,7 @@ const headers = [
 
 function EnhancedTableHead(props) {
   const { order, orderBy, onRequestSort } = props;
+
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
@@ -71,12 +72,13 @@ function EnhancedTableHead(props) {
             padding={headCell.disablePadding ? 'none' : 'default'}
             sortDirection={orderBy === headCell.id ? order : false}>
 
-            <TableSortLabel
+            {headCell.sortable ? <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}>
               {headCell.label}
-            </TableSortLabel>
+            </TableSortLabel> : <p>{headCell.label}</p>}
+
           </TableCell>
         ))}
       </TableRow>
@@ -131,11 +133,11 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none'
   },
   tableCellContainer: {
-    display:'flex',
-    justifyContent:'flex-start',
-    textAlign:'center'
+    display: 'flex',
+    justifyContent: 'flex-start',
+    textAlign: 'center'
   },
-  text:{
+  text: {
     margin: '10px'
   }
 }));
@@ -144,31 +146,51 @@ const EnhancedTable = () => {
   const ctx = useContext(AuthContext)
   const classes = useStyles();
   const [order, setOrder] = useState('asc');
-  const [orderBy, setOrderBy] = useState('calories');
+  const [orderBy, setOrderBy] = useState('bidVal');
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [rowsChecked, setRowsChecked] = useState([])
+  const [rows, setRows] = useState([])
   let history = useHistory();
 
-  const rows = ctx.userData.map((data) => {
-    const bids = data.bids.map(e => e.amount);
-    let max = bids.length === 0 ? '-' : Math.max(...bids)
-    let min = bids.length === 0 ? '-' : Math.min(...bids)
-    let index = rowsChecked.findIndex((e) => {
-      return e.id === data.id
+  useEffect(() => {
+    const x = ctx.userData.map((data) => {
+      const bids = data.bids.map(e => e.amount);
+      let max = bids.length === 0 ? '' : Math.max(...bids)
+      let min = bids.length === 0 ? '' : Math.min(...bids)
+      return {
+        id: data.id,
+        checked: true,
+        imageURL: data.avatarUrl,
+        name: data.firstname + " " + data.lastname,
+        phone: data.phone,
+        premium: data.hasPremium ? "Yes" : "No",
+        maxBid: max,
+        minBid: min,
+        email: data.email
+      };
+    });
+    setRows(x)
+  }, [ctx.userData])
+
+  const getIndex = (id) => {
+    var data = [...rows]
+    const index = data.findIndex(e => {
+      return id === e.id
     })
-    return {
-      id: data.id,
-      imageURL: data.avatarUrl,
-      name: data.firstname + " " + data.lastname,
-      phone: data.phone,
-      premium: data.hasPremium ? "Yes" : "No",
-      bid: rowsChecked.length !== 0 ? (rowsChecked[index].max ? max : min) : max,
-      email: data.email
-    };
-  });
+    return data[index].checked
+  }
+
+  const changeBidHandler = (id) => {
+    let data = [...rows]
+    const index = data.findIndex(e => {
+      return id === e.id
+    })
+    data[index].checked = !data[index].checked
+    setRows(data)
+  }
 
   const handleRequestSort = (event, property) => {
+    console.log(property)
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
@@ -237,10 +259,15 @@ const EnhancedTable = () => {
                       <TableCell align="left">{row.phone}</TableCell>
                       <TableCell align="left">{row.premium}</TableCell>
                       <TableCell align="right">
-                        {row.bid}
+                        {getIndex(row.id) ? row.maxBid : row.minBid}
                       </TableCell>
-                      <TableCell>
-                        <Switch />
+                      <TableCell scope="row">
+                        <div className={classes.tableCellContainer}>
+                          <b style={{marginTop:'8px'}}>Max</b>
+                          <Switch checked={!getIndex(row.id)} onChange={() => { changeBidHandler(row.id) }} />
+                          <b style={{marginTop:'8px'}}>Min</b>
+                        </div>
+
                       </TableCell>
                     </TableRow>
                   );
