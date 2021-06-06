@@ -15,7 +15,7 @@ import Avatar from '@material-ui/core/Avatar';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import classes from './Tables.module.css'
 
-function descendingComparator(a, b, orderBy) {
+function compareValues(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
   }
@@ -25,13 +25,13 @@ function descendingComparator(a, b, orderBy) {
   return 0;
 }
 
-function getComparator(order, orderBy) {
+function getCompareType(order, orderBy) {
   return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
+    ? (a, b) => compareValues(a, b, orderBy)
+    : (a, b) => -compareValues(a, b, orderBy);
 }
 
-function stableSort(array, comparator) {
+function sortArray(array, comparator) {
   const stabilizedThis = array.map((el, index) => [el, index]);
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
@@ -49,7 +49,6 @@ const headers = [
   { id: 'bidVal', sortable: true, disablePadding: false, label: 'Bid Value (Max/min)' },
   { id: 'check', sortable: false, disablePadding: false, label: 'Toggle Max/Min' }
 ];
-
 
 const UserTable = () => {
   const ctx = useContext(AuthContext)
@@ -87,6 +86,7 @@ const UserTable = () => {
       };
     });
     setRows(x)
+
   }, [checked, ctx.userData])
 
   const getIndex = (id) => {
@@ -96,9 +96,9 @@ const UserTable = () => {
     return checked[index].max
   }
 
-  const changeBidHandler = (event, id) => {
+  const changeBidHandler = (event, id, x) => {
+
     event.stopPropagation()
-    console.log(event.type)
     let data = [...checked]
     const index = data.findIndex(e => {
       return id === e.id
@@ -134,8 +134,7 @@ const UserTable = () => {
         <TableToolbar />
 
         <TableContainer>
-          {ctx.isLoading && <CircularProgress />
-          }
+          {ctx.isLoading && <CircularProgress className={classes.progress} />}
           <Table
             stickyHeader
             className={classes.Table}
@@ -153,7 +152,7 @@ const UserTable = () => {
             />
 
             <TableBody>
-              {stableSort(rows, getComparator(order, orderBy))
+              {sortArray(rows, getCompareType(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   const labelId = `enhanced-table-checkbox-${index}`;
@@ -165,7 +164,7 @@ const UserTable = () => {
                       onClick={(event) => handleClick(event, row.id)}
                       tabIndex={-1}
                     >
-                      <TableCell  id={labelId} scope="row" padding="default">
+                      <TableCell id={labelId} scope="row" padding="default">
                         <div className={classes.tableCellContainer}>
                           <Avatar src={row.imageURL} alt='avatar' />
                           <p className={classes.text}>{row.name}</p>
@@ -180,7 +179,9 @@ const UserTable = () => {
                       <TableCell align="center" scope="row">
                         <div className={classes.tableCellContainer}>
                           <b style={{ marginTop: '8px' }}>Max</b>
-                          <Switch checked={!getIndex(row.id)} onClick={(e) => { changeBidHandler(e, row.id) }} />
+                          <Switch checked={!getIndex(row.id)} onClick={(e) => {
+                            changeBidHandler(e, row.id, index)
+                          }} />
                           <b style={{ marginTop: '8px' }}>Min</b>
                         </div>
                       </TableCell>
@@ -191,6 +192,7 @@ const UserTable = () => {
             </TableBody>
           </Table>
         </TableContainer>
+
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"

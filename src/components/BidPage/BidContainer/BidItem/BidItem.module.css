@@ -1,6 +1,7 @@
 .bid-item {
   padding: 7px 10px;
-  width: 400px;
+  width: auto;
+  margin: 10px;
   display: flex;
   flex-flow: column;
   justify-content: space-between;

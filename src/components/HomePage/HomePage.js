@@ -1,12 +1,9 @@
-import React, { useContext } from 'react'
-import AuthContext from '../../store/UserDataContext'
+import React from 'react'
 import Table from './Table/MainTable/Table'
 import TopBar from './TopBar'
 import classes from './HomePage.module.css'
 
 const HomePage = () => {
-    const ctx = useContext(AuthContext)
-    console.log(ctx)
     return (
         <div style={{marginTop:'2.5rem'}}>
             <TopBar title="TravClan Task Assignment - Pulkit Pahuja"/>

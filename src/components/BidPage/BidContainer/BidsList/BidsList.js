@@ -46,20 +46,23 @@ const BidsList = props => {
 
                 <div className={classes["innerContainer"]}>
                     <h3 className={classes['bids-list__fallback']}>Name : </h3>
-                    <h3 className={classes['bids-list__fallback']}>{currUser.firstname} {currUser.lastname}</h3>
+                    <h3 className={classes['bids-list__fallback']}> {currUser.firstname} {currUser.lastname}</h3>
                 </div>
                 <div className={classes["innerContainer"]}>
                     <h3 className={classes['bids-list__fallback']}>Phone Number : </h3>
-                    <h3 className={classes['bids-list__fallback']}>{currUser.phone}</h3>
+                    <h3 className={classes['bids-list__fallback']}> {currUser.phone}</h3>
                 </div>
                 <div className={classes["innerContainer"]}>
                     <h3 className={classes['bids-list__fallback']}>Email : </h3>
-                    <h3 className={classes['bids-list__fallback']}>{currUser.email}</h3>
+                    <h3 className={classes['bids-list__fallback']}> {currUser.email}</h3>
                 </div>
                 <div className={classes["innerContainer"]}>
                     <h3 className={classes['bids-list__fallback']}>Total Bids : </h3>
-                    <h3 className={classes['bids-list__fallback']}>{currUser.bids.length}</h3>
+                    <h3 className={classes['bids-list__fallback']}> {currUser.bids.length}</h3>
                 </div>
+            </div>
+            <div>
+                {currUser.bids.length === 0 && <h2 className={classes['bids-list__fallback']}>There are no bids available.</h2>}
             </div>
             <ul className={classes["bids-list"]}>
                 {chunkifyArr(currUser.bids).map(bid => (<BidsRow key={Math.random()} bids={bid}></BidsRow>))}
