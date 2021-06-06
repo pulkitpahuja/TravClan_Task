@@ -42,12 +42,12 @@ function stableSort(array, comparator) {
 }
 
 const headers = [
-  { id: 'cust_name', sortable: false,  disablePadding: false, label: 'Customer' },
-  { id: 'email', sortable: false,  disablePadding: false, label: 'Email' },
-  { id: 'phone', sortable: false,  disablePadding: false, label: 'Phone' },
-  { id: 'premium', sortable: false,  disablePadding: false, label: 'Premium ?' },
+  { id: 'cust_name', sortable: false, disablePadding: false, label: 'Customer' },
+  { id: 'email', sortable: false, disablePadding: false, label: 'Email' },
+  { id: 'phone', sortable: false, disablePadding: false, label: 'Phone' },
+  { id: 'premium', sortable: false, disablePadding: false, label: 'Premium ?' },
   { id: 'bidVal', sortable: true, disablePadding: false, label: 'Bid Value (Max/min)' },
-  { id: 'check', sortable: false,  disablePadding: false, label: 'Toggle Max/Min' }
+  { id: 'check', sortable: false, disablePadding: false, label: 'Toggle Max/Min' }
 ];
 
 
@@ -137,6 +137,7 @@ const UserTable = () => {
           {ctx.isLoading && <CircularProgress />
           }
           <Table
+            stickyHeader
             className={classes.Table}
             aria-labelledby="tableTitle"
             size='medium'
@@ -164,19 +165,19 @@ const UserTable = () => {
                       onClick={(event) => handleClick(event, row.id)}
                       tabIndex={-1}
                     >
-                      <TableCell id={labelId} scope="row" padding="default">
+                      <TableCell  id={labelId} scope="row" padding="default">
                         <div className={classes.tableCellContainer}>
                           <Avatar src={row.imageURL} alt='avatar' />
                           <p className={classes.text}>{row.name}</p>
                         </div>
                       </TableCell>
-                      <TableCell>{row.email}</TableCell>
+                      <TableCell align="left">{row.email}</TableCell>
                       <TableCell align="left">{row.phone}</TableCell>
                       <TableCell align="left">{row.premium}</TableCell>
                       <TableCell align="left">
                         {row.bidVal}
                       </TableCell>
-                      <TableCell scope="row">
+                      <TableCell align="center" scope="row">
                         <div className={classes.tableCellContainer}>
                           <b style={{ marginTop: '8px' }}>Max</b>
                           <Switch checked={!getIndex(row.id)} onClick={(e) => { changeBidHandler(e, row.id) }} />

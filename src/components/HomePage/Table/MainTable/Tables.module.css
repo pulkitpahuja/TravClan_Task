@@ -18,7 +18,7 @@
 .tableCellContainer {
   display: flex;
   justify-content: flex-start;
-  text-align: center;
+
 }
 
 .tableRow {

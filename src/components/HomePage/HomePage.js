@@ -8,8 +8,8 @@ const HomePage = () => {
     const ctx = useContext(AuthContext)
     console.log(ctx)
     return (
-        <div>
-            <TopBar title="TravClan Task Assignment"/>
+        <div style={{marginTop:'2.5rem'}}>
+            <TopBar title="TravClan Task Assignment - Pulkit Pahuja"/>
             <div className={classes.homepage__div}>
                 <Table />
             </div>
