@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# Travclan Task Assignment- Pulkit Pahuja
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Task Assignment submission by Pulkit Pahuja. The task can be found below.
 
-## Available Scripts
+## Steps To Follow
 
 In the project directory, you can run:
 
-### `yarn start`
+### 1. `npm install` 
+
+Installs all the dependencies required for the app to run.
+
+
+### 2. `npm start` OR `yarn test`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Task
+Develop a Single page application with following mentioned features
+but not necessarily limited to it.
+### Must:
+1. Display a list of customers (with pagination).
+2. Each customer bas several bids, by default only the maximum bid
+should be displayed. Also add a toggle button so that on switching
+toggle only the minimum bid is displayed.
+3. Enable sorting of customer list by bid amount.
+4. Front-end part should be developed as SPA with ES6, React(Hooks).
+### Good to have:
+1. Using Context Api or Custom Hooks will be a big plus.
+2. Clicking on any row should redirect to a separate url where all the
+selected customer's bids should be displayed. (use your creativity on
+how to display the data).
 
-### `yarn build`
+3. Styling is not a priority but using Material Ui(https://material-
+ui.com) entirely will be a plus.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Use following API to retrieve the data - `https://intense-tor-
+76305.herokuapp.com/merchants`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Data structure example
+Customer {
+id: string,
+firstname: string,
+lastname: string,
+avatarUrl: string,
+email: string,
+phone: string,
+hasPremium: boolean,
+bids: Array<Bid>
+}
+Bid {
+id: string,
+carTitle: string,
+amount: number,
+created: string
+}
+## Table expected
+___________________________________________________________________
+| Customer name (with avtar) | Email | Phone | Premium | Max/Min bid |
+___________________________________________________________________
