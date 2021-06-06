@@ -11,7 +11,7 @@ In the project directory, you can run:
 Installs all the dependencies required for the app to run.
 
 
-### 2. `npm start` OR `yarn test`
+### 2. `npm start` OR `yarn start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
